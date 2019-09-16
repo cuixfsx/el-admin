@@ -30,6 +30,10 @@ public class MenuServiceImpl implements MenuService {
     private MenuMapper menuMapper;
 
     @Override
+    public Menu getUnique(long id) {
+        return menuRepository.getOne(id);
+    }
+    @Override
     public MenuDTO findById(long id) {
         Optional<Menu> menu = menuRepository.findById(id);
         ValidationUtil.isNull(menu,"Menu","id",id);
@@ -58,6 +62,28 @@ public class MenuServiceImpl implements MenuService {
             }
         }
         return menuMapper.toDto(menuRepository.save(resources));
+    }
+
+    @Override
+    public List<Menu> getList() {
+        return menuRepository.findAll();
+    }
+    @Override
+    public String getParent(Menu menu, List<Menu> menus) {
+
+        Optional<Menu> optionalMenu = menus.stream().filter(o -> Objects.equals(o.getId(),menu.getPid())).findFirst();
+
+        if (optionalMenu.isPresent()){
+
+            String name = optionalMenu.get().getId() + "->";
+
+            String returnName = getParent(optionalMenu.get(), menus);
+
+            return returnName + name;
+
+        }
+        return "";
+
     }
 
     @Override

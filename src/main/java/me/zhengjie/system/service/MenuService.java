@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -82,4 +83,10 @@ public interface MenuService {
      * @return
      */
     Object buildMenus(List<MenuDTO> byRoles);
+
+    Menu getUnique(long id);
+
+    List<Menu> getList();
+
+    String getParent(Menu menu, List<Menu> menus);
 }

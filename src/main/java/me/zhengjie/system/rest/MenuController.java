@@ -56,6 +56,13 @@ public class MenuController {
         List<MenuDTO> menuDTOList = menuService.findByRoles(user.getRoles());
         return new ResponseEntity(menuService.buildMenus((List<MenuDTO>)menuService.buildTree(menuDTOList).get("content")),HttpStatus.OK);
     }
+    @GetMapping(value = "/menus/parent/{id}")
+    public ResponseEntity buildParent(@PathVariable Long id){
+
+        String menuNames = menuService.getParent( menuService.getUnique(id), menuService.getList());
+
+        return new ResponseEntity<>(menuNames, HttpStatus.OK);
+    }
 
     /**
      * 返回全部的菜单
