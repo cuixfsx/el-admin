@@ -1,0 +1,6 @@
+projectKey=eladmin:master
+serverUrl=http://localhost:88/report/ARCH
+serverVersion=6.7.5.38563
+dashboardUrl=http://localhost:88/report/ARCH/dashboard/index/eladmin:master
+ceTaskId=AWqMODfyZprHb1ta3nMl
+ceTaskUrl=http://localhost:88/report/ARCH/api/ce/task?id=AWqMODfyZprHb1ta3nMl
